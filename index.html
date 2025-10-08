@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+    
+    <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+    
+    <title>Malaysia Vehicle Registration & Environmental Complaints Map</title>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>A Data-Driven Overview of Complaints, Air Pollution,</h1>
+        <h1>and Vehicle Numbers in Malaysia</h1>
+    </div>
+
+    <div class="container">
+        <div id="symbol_map"></div>
+        <div class="map-textbox">
+            <p>
+            The visualization shows that Selangor and Johor lead in both vehicle registration and environmental complaints in 2019. This correlation highlights the likely environmental pressure on highly urbanized states, where dense populations and high vehicle usage contribute significantly to environmental issues.
+            </p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="viz-card" aria-label="Average complaints bar chart">
+            <div id="bar_chart"></div>
+            <div class="bar-textbox">
+                <p>
+                The bar chart reveals that Selangor, Johor, and Pulau Pinang have the highest number of complaints, indicating significant environmental challenges in these urbanized states. In contrast, states like Perlis and Terengganu show lower complaint rates, suggesting better environmental compliance or less vehicle-related pollution.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><strong>Data Sources:</strong></p>
+        <p>1. <strong>Ministry of Transport Malaysia</strong>, https://www.mot.gov.my/en/Statistik%20Tahunan%20Pengangkutan/Transport%20Statistics%20Malaysia%202020.pdf</p>
+        <p>2. <strong>Department of Environment Malaysia</strong>, https://landahandtosavetheland.data.blog/statistic-land-pollution-in-malaysia/</p>
+        <p><strong>Note:</strong> Data from 2019.</p>
+        <p>Created on October 7, 2025 by <strong>Yap Kiao Hien (34216340)</strong> for FIT3179 Data Visualization 2, Semester 2, 2025.</p>
+    </div>
+
+    <script type="text/javascript">
+        var spec1 = "js/symbol_map.vg.json";
+        vegaEmbed('#symbol_map', spec1).then(function(result1) {
+            // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+
+        var spec2 = "js/bar_chart.vl.json";
+        vegaEmbed('#bar_chart', spec2).then(function(result2) {
+            // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+
+    </script>
+
+</body>
+</html>

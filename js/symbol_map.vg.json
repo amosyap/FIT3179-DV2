@@ -1,0 +1,144 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 1400,
+    "height": 500,
+    "title": {
+        "text": "Malaysia: Vehicle Registration vs Environmental Complaints by State (2019)",
+        "anchor": "middle",
+        "fontSize": 24
+        },
+    "projection": {
+        "type": "mercator",
+        "center": [109, 4],
+        "scale": 3500,
+        "translate": [675, 250]
+    },
+    "layer": [{
+        "data": {
+            "url": "https://raw.githubusercontent.com/amosyap/FIT3179-DV2-W10-Homework/refs/heads/main/js/ne_10m.topojson",
+            "format": {
+                "type": "topojson",
+                "feature": "ne_10m_admin_1_states_provinces"
+                }
+            },
+        "transform": [
+            {
+            "calculate": "datum.properties.admin == 'Malaysia' ? 'Malaysia' : 'Other'",
+            "as": "isMalaysia"
+            }
+        ],
+        "mark": {
+            "type": "geoshape",
+            "stroke": "white"
+        },
+        "encoding": {
+            "color": {
+            "field": "isMalaysia",
+            "type": "nominal",
+            "scale": {
+                "domain": ["Malaysia", "Other"],
+                "range": ["lightgray", "#f2f2f2"]
+            },
+            "legend": null
+            }
+        }
+        },
+        {
+            "data": {"graticule": {"step": [1, 1]}},
+            "mark": {"type": "geoshape", "fill": null, "stroke": "#ddd"}
+        },
+        {
+        "data": {
+            "url": "https://raw.githubusercontent.com/amosyap/FIT3179-DV2-W10-Homework/refs/heads/main/data/DV2_Dataset.csv"
+        },
+        "mark": {
+            "type": "circle",
+            "opacity": 0.8,
+            "stroke": "black",
+            "strokeWidth": 1,
+            "tooltip": {"content": "data"}
+        },
+        "encoding": {
+            "longitude": {
+                "field": "longitude",
+                "type": "quantitative"
+            },
+            "latitude": {
+                "field": "latitude",
+                "type": "quantitative"
+            },
+            "size": {
+                "field": "registered_motor_cars",
+                "type": "quantitative",
+                "title": "Registered Motor Cars",
+                "scale": {
+                    "type": "sqrt",
+                    "range": [100, 2500],
+                    "domain": [100000, 6500000]
+                },
+                "legend": {
+                        "orient": "none",        
+                        "legendX": 400,         
+                        "legendY": 50,         
+                        "direction": "vertical",
+                        "title": "Registered Vehicles",
+                        "symbolFillColor": "#e0e0e0"
+                }
+            },
+            "color": {
+                "field": "number_of_complaints",
+                "type": "quantitative",
+                "title": "Environmental Complaints",
+                "scale": {
+                    "type": "threshold",
+                    "domain": [1000, 2000, 3000],
+                    "range": ["#fee5d9", "#fcae91", "#fb6a4a", "#cb181d"]
+                },
+                "legend": {
+                    "orient": "none",        
+                    "legendX": 550,         
+                    "legendY": 50,         
+                    "direction": "vertical",
+                    "title": "Complaints"
+                }
+            },
+            "tooltip": [
+            {"field": "state", "type": "nominal", "title": "State"},
+            {"field": "registered_motor_cars", "type": "quantitative", "title": "Registered Vehicles", "format": ","},
+            {"field": "number_of_complaints", "type": "quantitative", "title": "Environmental Complaints"},
+            {"field": "state_population", "type": "quantitative", "title": "Population", "format": ","},
+            {"field": "complaints_per_10k_residents", "type": "quantitative", "title": "Complaints per 10,000 population", "format": ".1f"},
+            {"field": "vehicles_per_1k_residents", "type": "quantitative", "title": "Vehicles per 1,000 population", "format": ".1f"}
+            ]
+        }
+        },
+        {
+        "data": {
+            "url": "https://raw.githubusercontent.com/amosyap/FIT3179-DV2-W10-Homework/refs/heads/main/data/DV2_Dataset.csv",
+            "format": {"type": "csv"}
+        },
+        "transform": [
+            {"filter": "datum.state == 'Selangor' || datum.state == 'Johor'"},
+            {
+                "calculate": "datum.state == 'Selangor' ? datum.longitude - 0.8 : datum.longitude - 0.65",
+                "as": "adjusted_longitude"
+            }
+        ],
+        "mark": {
+            "type": "text",
+            "align": "center",
+            "baseline": "middle",
+            "fontSize": 12,
+            "fill": "black"
+        },
+        "encoding": {
+            "longitude": {"field": "adjusted_longitude", "type": "quantitative"},
+            "latitude": {"field": "latitude", "type": "quantitative"},
+            "text": {"field": "state", "type": "nominal"}
+        }
+        }
+    ],
+    "config": {
+        "view": {"stroke": "transparent"}
+    }
+    }
