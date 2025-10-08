@@ -5,8 +5,8 @@
     "url": "https://raw.githubusercontent.com/amosyap/FIT3179-DV2-W10-Homework/refs/heads/main/data/DV2_Dataset.csv"
   },
   "title": {
-    "text": "Total Number of Complaints by State in Malaysia",
-    "fontSize": 18,
+    "text": "Number of Complaints by State in Malaysia (2019)",
+    "fontSize": 24,
     "fontWeight": "bold",
     "anchor": "start"
   },

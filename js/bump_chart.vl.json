@@ -4,8 +4,8 @@
   "width": 600,
   "height": 420,
   "title": {
-    "text": "Vehicle Type Rankings by Year (Malaysia)",
-    "fontSize": 18,
+    "text": "Vehicle Type Rankings by Year in Malaysia",
+    "fontSize": 24,
     "fontWeight": "bold",
     "anchor": "middle",
     "offset": 10
