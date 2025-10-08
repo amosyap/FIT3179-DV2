@@ -1,0 +1,91 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Overview + detail showing multiple pollutants (CO, NO₂, etc.) over time with brushing interaction.",
+  "title": {
+    "text": "Breakdown of Air Pollutants Over The Years in Malaysia",
+    "fontSize": 24,
+    "fontWeight": "bold",
+    "anchor": "middle",
+    "offset": 10
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/amosyap/FIT3179-DV2/refs/heads/main/data/air_pollution.csv",
+    "format": {"type": "csv", "parse": {"date": "date"}}
+  },
+  "params": [
+    {
+      "name": "pollutant_select",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "name": "Select Pollutant: ",
+        "options": ["All", "CO", "NO2", "O3", "SO2"]
+      }
+    }
+  ],
+  "vconcat": [
+    {
+      "width": 600,
+      "height": 500,
+      "mark": {"type": "line", "point": true, "interpolate": "monotone"},
+      "transform": [
+        {
+          "filter": "pollutant_select == 'All' || datum.pollutant == pollutant_select"
+        },
+        {"filter": "datum.concentration != null"}
+      ],
+      "encoding": {
+        "x": {
+          "field": "date",
+          "type": "temporal",
+          "title": "Date",
+          "scale": {"domain": {"param": "brush"}}
+        },
+        "y": {
+          "field": "concentration",
+          "type": "quantitative",
+          "title": "Concentration"
+        },
+        "color": {
+          "field": "pollutant",
+          "type": "nominal",
+          "title": "Pollutant"
+        },
+        "tooltip": [
+          {"field": "pollutant", "type": "nominal", "title": "Pollutant"},
+          {"field": "date", "type": "temporal", "title": "Date"},
+          {
+            "field": "concentration",
+            "type": "quantitative",
+            "title": "Concentration"
+          }
+        ]
+      }
+    },
+    {
+      "width": 600,
+      "height": 100,
+      "mark": {"type": "area", "interpolate": "monotone"},
+      "params": [
+        {"name": "brush", "select": {"type": "interval", "encodings": ["x"]}}
+      ],
+      "transform": [
+        {
+          "filter": "pollutant_select == 'All' || datum.pollutant == pollutant_select"
+        },
+        {"filter": "datum.concentration != null"}
+      ],
+      "encoding": {
+        "x": {"field": "date", "type": "temporal", "title": ""},
+        "y": {
+          "aggregate": "mean",
+          "field": "concentration",
+          "type": "quantitative",
+          "title": ""
+        },
+        "color": {"field": "pollutant", "type": "nominal", "legend": null}
+      }
+    }
+  ],
+  "config": {}
+}
