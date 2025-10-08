@@ -10,8 +10,8 @@
     "fontWeight": "bold",
     "anchor": "start"
   },
-  "width": 280,
-  "height": 300,
+  "width": 500,
+  "height": 460,
   "params": [
     {
       "name": "region_selection",
@@ -89,8 +89,6 @@
     {
       "mark": {
         "type": "text",
-        "align": "left",
-        "dx": 5,
         "dy": 270,
         "color": "firebrick",
         "fontSize": 12,

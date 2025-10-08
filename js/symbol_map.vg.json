@@ -1,6 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 1400,
+    "width": 1370,
     "height": 500,
     "title": {
         "text": "Malaysia: Vehicle Registration vs Environmental Complaints by State (2019)",

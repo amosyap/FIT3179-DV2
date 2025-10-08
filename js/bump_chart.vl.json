@@ -1,0 +1,159 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Bump chart ranking vehicle types per year, colored in pastel palette and using emojis as labels.",
+  "width": 600,
+  "height": 420,
+  "title": {
+    "text": "Vehicle Type Rankings by Year (Malaysia)",
+    "fontSize": 18,
+    "fontWeight": "bold",
+    "anchor": "middle",
+    "offset": 10
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/amosyap/FIT3179-DV2/refs/heads/main/data/vehicle_count_breakdown.csv",
+    "format": {"type": "csv", "parse": {"Value": "number"}}
+  },
+  "params": [
+    {
+      "name": "year_min",
+      "value": 2011,
+      "bind": {
+        "input": "range",
+        "min": 2011,
+        "max": 2019,
+        "step": 1,
+        "name": "From: "
+      }
+    },
+    {
+      "name": "year_max",
+      "value": 2019,
+      "bind": {
+        "input": "range",
+        "min": 2010,
+        "max": 2019,
+        "step": 1,
+        "name": "To: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "lookup": "Type of vehicle",
+      "from": {
+        "data": {
+          "values": [
+            {"Type of vehicle": "Motorcars", "icon": "🚗"},
+            {"Type of vehicle": "Motorcycles", "icon": "🏍️"},
+            {"Type of vehicle": "Taxis and hired cars", "icon": "🚕"},
+            {"Type of vehicle": "Commercial vehicle", "icon": "🚚"},
+            {"Type of vehicle": "Other vehicles", "icon": "🚐"}
+          ]
+        },
+        "key": "Type of vehicle",
+        "fields": ["icon"]
+      }
+    },
+    {
+      "window": [{"op": "rank", "as": "rank"}],
+      "groupby": ["Year"],
+      "sort": [{"field": "Value", "order": "descending"}]
+    },
+    {"filter": "datum.Year >= year_min && datum.Year <= year_max"}
+  ],
+  "layer": [
+    {
+      "mark": {"type": "line", "interpolate": "monotone", "strokeWidth": 2},
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal",
+          "title": "Year",
+          "axis": {"labelAngle": 0, "offset": 10, "labelPadding": 8}
+        },
+        "y": {"field": "rank", "type": "quantitative"},
+        "color": {
+          "field": "Type of vehicle",
+          "type": "nominal",
+          "scale": {
+            "range": ["#FF7A29","#FF9F43","#FFC857","#FF6B6B","#FF3E5B"]
+
+
+          },
+          "legend": null
+        },
+        "detail": {"field": "Type of vehicle"},
+        "order": {"field": "Year", "type": "ordinal"}
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 1500,
+        "opacity": 0.95,
+        "stroke": "white",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {"field": "Year", "type": "ordinal"},
+        "y": {"field": "rank", "type": "quantitative"},
+        "color": {
+          "field": "Type of vehicle",
+          "type": "nominal",
+          "scale": {
+            "range": ["#AEC6CF", "#FFB347", "#77DD77", "#CBAACB", "#FFD1DC"]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {"field": "Year", "type": "ordinal"},
+          {"field": "Type of vehicle", "type": "nominal", "title": "Vehicle"},
+          {
+            "field": "Value",
+            "type": "quantitative",
+            "title": "Value",
+            "format": ","
+          },
+          {"field": "rank", "type": "quantitative", "title": "Rank"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "baseline": "middle", "align": "center"},
+      "encoding": {
+        "x": {"field": "Year", "type": "ordinal"},
+        "y": {"field": "rank", "type": "quantitative"},
+        "text": {"field": "icon", "type": "nominal"},
+        "size": {"value": 24},
+        "tooltip": [
+          {"field": "Year", "type": "ordinal"},
+          {"field": "Type of vehicle", "type": "nominal", "title": "Vehicle"},
+          {
+            "field": "Value",
+            "type": "quantitative",
+            "title": "Value",
+            "format": ","
+          },
+          {"field": "rank", "type": "quantitative", "title": "Rank"}
+        ]
+      }
+    }
+  ],
+  "encoding": {
+    "y": {
+      "scale": {"domain": [1, 5], "reverse": true, "padding": 50},
+      "axis": {
+        "title": "Rank (1 = top)",
+        "values": [1, 2, 3, 4, 5],
+        "offset": 10,
+        "labelPadding": 6
+      }
+    }
+  },
+  "config": {
+    "axis": {"labelFontSize": 12, "titleFontSize": 13},
+    "view": {"stroke": "transparent"}
+  }
+}
