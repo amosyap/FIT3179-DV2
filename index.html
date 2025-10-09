@@ -20,7 +20,10 @@
     <div id="symbol_map"></div>
     <div class="map-textbox">
         <p>
-        The visualization shows that Selangor and Johor lead in both vehicle registration and environmental complaints in 2019. This correlation highlights the likely environmental pressure on highly urbanized states, where dense populations and high vehicle usage contribute significantly to environmental issues.
+        The visualization shows that <strong>Selangor</strong> and <strong>Johor</strong> lead in both vehicle
+        registration and environmental complaints in 2019. This correlation highlights the likely environmental
+        pressure on highly urbanized states, where dense populations and high vehicle usage contribute
+        significantly to environmental issues.
         </p>
     </div>
 
@@ -29,7 +32,7 @@
             <div id="bar_chart"></div>
             <div class="bar-textbox">
                 <p>
-                The chart demonstrates that <strong>Selangor</strong>, <strong>Johor</strong>, and <strong>
+                The chart above demonstrates that <strong>Selangor</strong>, <strong>Johor</strong>, and <strong>
                 Pulau Pinang</strong> record the highest volumes of vehicle-related complaints, highlighting
                 considerable environmental and urban management challenges in these highly developed states.
                 Conversely, regions like <strong>Perlis</strong> and <strong>Terengganu</strong> exhibit notably
@@ -42,7 +45,7 @@
         <div class="bump-container">
             <div class="bump-textbox">
                 <p>
-                This captivating bump chart portrays the gradual transformation of vehicle-type rankings across Malaysia
+                The bump chart below portrays the gradual transformation of vehicle-type rankings across Malaysia
                 from <strong>2012-2019</strong>. It underscores the sustained rivalry between <strong>motorcycles</strong>
                 and <strong>motorcars</strong> for the premier positions, indicating evolving mobility preferences.
                 By contrast, <strong>commercial vehicles</strong>, <strong>taxis</strong>, and <strong>other transport categories</strong>
@@ -65,30 +68,20 @@
     <div class="row3">
         <div class="line-container">
             <div id="line_chart"></div>
-            <!-- <div class="bar-textbox">
-                <p>
-                The chart demonstrates that <strong>Selangor</strong>, <strong>Johor</strong>, and <strong>
-                Pulau Pinang</strong> record the highest volumes of vehicle-related complaints, highlighting
-                considerable environmental and urban management challenges in these highly developed states.
-                Conversely, regions like <strong>Perlis</strong> and <strong>Terengganu</strong> exhibit notably
-                lower complaint frequencies, which may reflect stronger environmental compliance measures, fewer
-                industrial emissions, or reduced traffic congestion levels compared to their more urbanized counterparts.
-                </p>
-            </div> -->
         </div>
 
-        <div class="bump-container">
-            <div class="bump-textbox">
+        <div class="scatter-container">
+            <div id="scatter_plot"></div>
+            <div class="scatter-textbox">
                 <p>
-                This captivating bump chart portrays the gradual transformation of vehicle-type rankings across Malaysia
-                from <strong>2012-2019</strong>. It underscores the sustained rivalry between <strong>motorcycles</strong>
-                and <strong>motorcars</strong> for the premier positions, indicating evolving mobility preferences.
-                By contrast, <strong>commercial vehicles</strong>, <strong>taxis</strong>, and <strong>other transport categories</strong>
-                exhibit remarkable stability, remaining in lower tiers with modest variation throughout the observed period.
-                These patterns may inform strategic transportation planning and targeted initiatives in urbanised regions.
+                This visualization reveals a varied, non-linear relationship between vehicle density and public complaints across
+                Malaysian states. Most cluster at lower rates, while outliers stand out: <strong>Negeri Sembilan</strong> records
+                the highest complaints despite moderate vehicle density, and <strong>W.P. Kuala Lumpur</strong> shows extreme vehicle
+                concentration. High complaint levels in <strong>Selangor</strong> and <strong>Penang</strong> suggest other
+                contributing factors beyond vehicle numbers.
                 </p>
             </div>
-            <div id="bump_chart"></div>
+            
         </div>
     </div>
 
@@ -119,6 +112,11 @@
 
         var spec4 = "js/line_chart.vl.json";
         vegaEmbed('#line_chart', spec4).then(function(result4) {
+            // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+
+        var spec5 = "js/scatter_plot.vl.json";
+        vegaEmbed('#scatter_plot', spec5).then(function(result5) {
             // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
         }).catch(console.error);
 

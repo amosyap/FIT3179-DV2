@@ -1,0 +1,79 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Scatter plot with direct legend selection: complaints vs vehicles per 10k residents, colored by state.",
+  "title": {
+    "text": "Complaints vs. Vehicles per 10,000 Residents by State",
+    "fontSize": 24,
+    "fontWeight": "bold",
+    "anchor": "middle",
+    "offset": 10
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/amosyap/FIT3179-DV2/refs/heads/main/data/DV2_Dataset.csv",
+    "format": {"type": "csv"}
+  },
+  "width": 600,
+  "height": 590,
+  "layer": [
+    {
+      "selection": {
+        "state_highlight": {
+          "type": "multi",
+          "fields": ["state"],
+          "bind": "legend"
+        }
+      },
+      "mark": {"type": "circle", "filled": true, "size": 160},
+      "encoding": {
+        "x": {
+          "field": "vehicles_per_10k_residents",
+          "type": "quantitative",
+          "title": "Vehicles per 10,000 residents"
+        },
+        "y": {
+          "field": "complaints_per_10k_residents",
+          "type": "quantitative",
+          "title": "Complaints per 10,000 residents"
+        },
+        "color": {
+          "field": "state",
+          "type": "nominal",
+          "title": "State",
+          "scale": {
+            "range": [
+              "#1f77b4","#ff7f0e","#d62728","#9467bd","#8c564b","#e377c2","#7f7f7f","#17becf",
+              "#ff9896","#c5b0d5","#c49c94","#f7b6d2","#9edae5","#ffbb78","#a55194","#393b79"
+            ]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "titleAnchor": "middle",
+            "columns": 6,
+            "symbolSize": 200,
+            "labelOffset": 10,
+            "offset": 30
+          }
+        },
+        "opacity": {
+          "condition": {"selection": "state_highlight", "value": 0.9},
+          "value": 0.2
+        },
+        "tooltip": [
+          {"field": "state", "type": "nominal", "title": "State"},
+          {
+            "field": "vehicles_per_10k_residents",
+            "type": "quantitative",
+            "title": "Vehicles per 10,000 Residents"
+          },
+          {
+            "field": "complaints_per_10k_residents",
+            "type": "quantitative",
+            "title": "Complaints per 10,000 Residents"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {"view": {"stroke": "transparent"}}
+}
