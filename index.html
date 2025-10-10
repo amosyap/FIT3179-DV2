@@ -78,12 +78,27 @@
     </div>
 
     <div class="row4">
-        <div class="line-container">
-            
+        <div class="line-textbox-container">
+            <div class="line-textbox">
+                <p>
+                This multi-year analysis reveals <strong>Carbon Monoxide (CO)</strong> as Malaysia's predominant air pollutant.
+                Its concentration vastly surpasses that of <strong>Ozone (O3)</strong>, <strong>Nitrogen Dioxide (NO2)</strong>,
+                and <strong>Sulphur Dioxide (SO2)</strong>, which all remain clustered at near-zero levels throughout the period.
+                The data highlights a dramatic spike in <strong>CO</strong> around September 2019, suggesting a significant seasonal
+                pollution event, likely haze. Apart from this anomaly, <strong>CO</strong> levels consistently fluctuate within
+                a high range, underscoring its primary role.
+                </p>
+            </div>
         </div>
-
-        <div class="scatter-container">
-            
+        <div class="donut-container">
+            <div id="donut_chart"></div>
+            <div class="donut-textbox">
+                <p>
+                This visualization clearly compares the spread of <strong>vehicles</strong>, <strong>area</strong>, and <strong>population</strong>
+                across all Malaysian states using small multiples. Each colorful donut chart shows a unique share pattern, revealing how each state's
+                share differs greatly across the three key measures.
+                </p>
+            </div>
         </div>
     </div>
 
@@ -119,6 +134,11 @@
 
         var spec5 = "js/scatter_plot.vl.json";
         vegaEmbed('#scatter_plot', spec5).then(function(result5) {
+            // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+
+        var spec6 = "js/donut_chart.vl.json";
+        vegaEmbed('#donut_chart', spec6).then(function(result6) {
             // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
         }).catch(console.error);
 
