@@ -92,7 +92,9 @@
         "dy": 270,
         "color": "firebrick",
         "fontSize": 12,
-        "fontWeight": "bold"
+        "fontWeight": "bold",
+        "align": "left",
+        "dx": 5
       },
       "encoding": {
         "x": {
@@ -101,7 +103,27 @@
           "type": "quantitative"
         },
         "y": {"value": 0},
-        "text": {"value": "Average Complaints"}
+        "text": {"value": "Average"}
+      }
+    },
+      {
+      "mark": {
+        "type": "text",
+        "dy": 285,
+        "color": "firebrick",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "align": "left",
+        "dx": 5
+      },
+      "encoding": {
+        "x": {
+          "aggregate": "mean",
+          "field": "number_of_complaints",
+          "type": "quantitative"
+        },
+        "y": {"value": 0},
+        "text": {"value": "Complaints"}
       }
     }
   ],

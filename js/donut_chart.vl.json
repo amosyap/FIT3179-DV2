@@ -7,7 +7,7 @@
     "format": {"type": "csv"}
   },
   "title": {
-    "text": "State Distribution by Vehicles, Area, and Population",
+    "text": "Top-5 State Distribution by Vehicles, Area, and Population",
     "anchor": "middle",
     "fontSize": 24,
     "fontWeight": "bold",
@@ -21,13 +21,22 @@
           "width": 250,
           "height": 250,
           "transform": [
-            {"joinaggregate": [{"op": "sum", "field": "registered_motor_cars", "as": "total_vehicles"}]}
+            {
+              "aggregate": [{ "op": "sum", "field": "registered_motor_cars", "as": "value_cars" }],
+              "groupby": ["state"]
+            },
+            {
+              "window": [{ "op": "rank", "as": "r" }],
+              "sort": [{ "field": "value_cars", "order": "descending" }]
+            },
+            { "filter": "datum.r <= 5" },
+            { "joinaggregate": [{ "op": "sum", "field": "value_cars", "as": "total_vehicles" }]}
           ],
           "layer": [
             {
               "mark": {"type": "arc", "innerRadius": 80, "outerRadius": 120},
               "encoding": {
-                "theta": {"field": "registered_motor_cars", "type": "quantitative", "stack": "normalize"},
+                "theta": {"field": "value_cars", "type": "quantitative", "stack": "normalize"},
                 "color": {
                   "field": "state",
                   "type": "nominal",
@@ -42,7 +51,7 @@
                 },
                 "tooltip": [
                   {"field": "state", "type": "nominal", "title": "State"},
-                  {"field": "registered_motor_cars", "type": "quantitative", "title": "Vehicles", "format": ","}
+                  {"field": "value_cars", "type": "quantitative", "title": "Vehicles", "format": ","}
                 ]
               }
             },
@@ -70,28 +79,37 @@
           "width": 250,
           "height": 250,
           "transform": [
-            {"joinaggregate": [{"op": "sum", "field": "state_area", "as": "total_area"}]}
+            {
+              "aggregate": [{ "op": "sum", "field": "state_area", "as": "value_area" }],
+              "groupby": ["state"]
+            },
+            {
+              "window": [{ "op": "rank", "as": "r" }],
+              "sort": [{ "field": "value_area", "order": "descending" }]
+            },
+            { "filter": "datum.r <= 5" },
+            { "joinaggregate": [{ "op": "sum", "field": "value_area", "as": "total_area" }]}
           ],
           "layer": [
             {
               "mark": {"type": "arc", "innerRadius": 80, "outerRadius": 120},
               "encoding": {
-                "theta": {"field": "state_area", "type": "quantitative", "stack": "normalize"},
+                "theta": {"field": "value_area", "type": "quantitative", "stack": "normalize"},
                 "color": {
-      "field": "state",
-      "type": "nominal",
-      "legend": null,
-      "scale": {
-        "range": [
-          "#1f77b4", "#ff7f0e", "#d62728", "#9467bd", "#8c564b", "#e377c2",
-          "#7f7f7f", "#17becf", "#ff9896", "#c5b0d5", "#c49c94", "#f7b6d2",
-          "#9edae5", "#ffbb78", "#a55194", "#393b79"
-        ]
-      }
-    },
+                  "field": "state",
+                  "type": "nominal",
+                  "legend": null,
+                  "scale": {
+                    "range": [
+                      "#1f77b4", "#ff7f0e", "#d62728", "#9467bd", "#8c564b", "#e377c2",
+                      "#7f7f7f", "#17becf", "#ff9896", "#c5b0d5", "#c49c94", "#f7b6d2",
+                      "#9edae5", "#ffbb78", "#a55194", "#393b79"
+                    ]
+                  }
+                },
                 "tooltip": [
                   {"field": "state", "type": "nominal", "title": "State"},
-                  {"field": "state_area", "type": "quantitative", "title": "Area (km2)", "format": ","}
+                  {"field": "value_area", "type": "quantitative", "title": "Area (km2)", "format": ","}
                 ]
               }
             },
@@ -119,28 +137,41 @@
           "width": 250,
           "height": 250,
           "transform": [
-            {"joinaggregate": [{"op": "sum", "field": "state_population", "as": "total_population"}]}
+            { "aggregate": [{ "op": "sum", "field": "state_population", "as": "value_population" }],
+              "groupby": ["state"]
+            },
+            {
+              "window": [{ "op": "rank", "as": "r" }],
+              "sort": [{ "field": "value_population", "order": "descending" }]
+            },
+            { "filter": "datum.r <= 5" },
+            { "joinaggregate": [{ "op": "sum", "field": "value_population", "as": "total_population" }]}
           ],
           "layer": [
             {
               "mark": {"type": "arc", "innerRadius": 80, "outerRadius": 120},
               "encoding": {
-                "theta": {"field": "state_population", "type": "quantitative", "stack": "normalize"},
+                "theta": {"field": "value_population", "type": "quantitative", "stack": "normalize"},
                 "color": {
-      "field": "state",
-      "type": "nominal",
-      "legend": null,
-      "scale": {
-        "range": [
-          "#1f77b4", "#ff7f0e", "#d62728", "#9467bd", "#8c564b", "#e377c2",
-          "#7f7f7f", "#17becf", "#ff9896", "#c5b0d5", "#c49c94", "#f7b6d2",
-          "#9edae5", "#ffbb78", "#a55194", "#393b79"
-        ]
-      }
-    },
+                  "field": "state",
+                  "type": "nominal",
+                  "legend": null,
+                  "scale": {
+                    "domain": [
+                      "Johor", "Kedah", "Kelantan", "Melaka", "Negeri Sembilan", "Pahang",
+                      "Perak", "Perlis", "Pulau Pinang", "Sabah", "Sarawak", "Selangor",
+                      "Terengganu", "W.P. Kuala Lumpur", "W.P. Labuan", "W.P. Putrajaya"
+                    ],
+                    "range": [
+                      "#1f77b4", "#ff7f0e", "#d62728", "#9467bd", "#8c564b", "#e377c2",
+                      "#7f7f7f", "#17becf", "#ff9896", "#c5b0d5", "#c49c94", "#f7b6d2",
+                      "#9edae5", "#ffbb78", "#a55194", "#393b79"
+                    ]
+                  }
+                },
                 "tooltip": [
                   {"field": "state", "type": "nominal", "title": "State"},
-                  {"field": "state_population", "type": "quantitative", "title": "Population", "format": ","}
+                  {"field": "value_population", "type": "quantitative", "title": "Population", "format": ","}
                 ]
               }
             },
@@ -163,5 +194,4 @@
       ]
     }
   ]
-  
 }

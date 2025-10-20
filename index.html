@@ -20,13 +20,11 @@
     <div id="symbol_map"></div>
     <div class="map-textbox">
         <p>
-        The visualization shows that <strong>Selangor</strong> and <strong>Johor</strong> lead in both vehicle
-        registration and environmental complaints in 2019. This correlation highlights the likely environmental
-        pressure on highly urbanized states, where dense populations and high vehicle usage contribute
-        significantly to environmental issues.
+        In 2019 Malaysia, bustling states like <strong>Selangor</strong> and <strong>Johor</strong>,
+        with their dense populations and extensive road networks, inevitably faced increased
+        environmental pressures, matching high vehicle numbers with more complaints.
         </p>
     </div>
-
     <div class="row2">
         <div class="bar-container">
             <div id="bar_chart"></div>
@@ -66,11 +64,8 @@
             <div id="scatter_plot"></div>
             <div class="scatter-textbox">
                 <p>
-                This visualization reveals a varied, non-linear relationship between vehicle density and public complaints across
-                Malaysian states. Most cluster at lower rates, while outliers stand out: <strong>Negeri Sembilan</strong> records
-                the highest complaints despite moderate vehicle density, and <strong>W.P. Kuala Lumpur</strong> shows extreme vehicle
-                concentration. High complaint levels in <strong>Selangor</strong> and <strong>Penang</strong> suggest other
-                contributing factors beyond vehicle numbers.
+                This scatter plot complicates the story. <strong>Negeri Sembilan</strong> leads complaints despite moderate
+                vehicle density, while <strong>W.P. Kuala Lumpur</strong>'s extreme car concentration doesn't top the complaint chart.
                 </p>
             </div>
             
@@ -92,13 +87,6 @@
         </div>
         <div class="donut-container">
             <div id="donut_chart"></div>
-            <div class="donut-textbox">
-                <p>
-                This visualization clearly compares the spread of <strong>vehicles</strong>, <strong>area</strong>, and <strong>population</strong>
-                across all Malaysian states using small multiples. Each colorful donut chart shows a unique share pattern, revealing how each state's
-                share differs greatly across the three key measures.
-                </p>
-            </div>
         </div>
     </div>
 
@@ -113,32 +101,32 @@
 
     <script type="text/javascript">
         var spec1 = "js/symbol_map.vg.json";
-        vegaEmbed('#symbol_map', spec1).then(function(result1) {
+        vegaEmbed('#symbol_map', spec1, {actions: false}).then(function(result1) {
             // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
         }).catch(console.error);
 
         var spec2 = "js/bar_chart.vl.json";
-        vegaEmbed('#bar_chart', spec2).then(function(result2) {
+        vegaEmbed('#bar_chart', spec2, {actions: false}).then(function(result2) {
             // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
         }).catch(console.error);
 
         var spec3 = "js/bump_chart.vl.json";
-        vegaEmbed('#bump_chart', spec3).then(function(result3) {
+        vegaEmbed('#bump_chart', spec3, {actions: false}).then(function(result3) {
             // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
         }).catch(console.error);
 
         var spec4 = "js/line_chart.vl.json";
-        vegaEmbed('#line_chart', spec4).then(function(result4) {
+        vegaEmbed('#line_chart', spec4, {actions: false}).then(function(result4) {
             // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
         }).catch(console.error);
 
         var spec5 = "js/scatter_plot.vl.json";
-        vegaEmbed('#scatter_plot', spec5).then(function(result5) {
+        vegaEmbed('#scatter_plot', spec5, {actions: false}).then(function(result5) {
             // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
         }).catch(console.error);
 
         var spec6 = "js/donut_chart.vl.json";
-        vegaEmbed('#donut_chart', spec6).then(function(result6) {
+        vegaEmbed('#donut_chart', spec6, {actions: false}).then(function(result6) {
             // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
         }).catch(console.error);
 
