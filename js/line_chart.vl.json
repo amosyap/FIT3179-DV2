@@ -44,7 +44,7 @@
         "y": {
           "field": "concentration",
           "type": "quantitative",
-          "title": "Concentration"
+          "title": "Concentration (µg/m3)"
         },
         "color": {
           "field": "pollutant",
@@ -57,7 +57,7 @@
           {
             "field": "concentration",
             "type": "quantitative",
-            "title": "Concentration"
+            "title": "Concentration (µg/m3)"
           }
         ]
       }
@@ -76,12 +76,12 @@
         {"filter": "datum.concentration != null"}
       ],
       "encoding": {
-        "x": {"field": "date", "type": "temporal", "title": ""},
+        "x": {"field": "date", "type": "temporal", "title": "Date"},
         "y": {
           "aggregate": "mean",
           "field": "concentration",
           "type": "quantitative",
-          "title": ""
+          "title": "Concentration (µg/m3)"
         },
         "color": {"field": "pollutant", "type": "nominal", "legend": null}
       }

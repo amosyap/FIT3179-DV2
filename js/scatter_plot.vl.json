@@ -12,8 +12,8 @@
     "url": "https://raw.githubusercontent.com/amosyap/FIT3179-DV2/refs/heads/main/data/DV2_Dataset.csv",
     "format": {"type": "csv"}
   },
-  "width": 600,
-  "height": 590,
+  "width": 630,
+  "height": 550,
   "layer": [
     {
       "selection": {

@@ -13,7 +13,7 @@
     "fontWeight": "bold",
     "dy": -20
   },
-  "spacing": 10,
+  "spacing": 50,
   "hconcat": [
     {
       "vconcat": [
@@ -193,5 +193,8 @@
         }
       ]
     }
-  ]
+  ],
+  "config": {
+    "view": {"stroke": "transparent"}
+  }
 }
