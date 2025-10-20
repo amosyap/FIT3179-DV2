@@ -171,7 +171,7 @@
     }
   },
   "config": {
-    "axis": {"labelFontSize": 12, "titleFontSize": 13},
+    "axis": {"labelFontSize": 12, "titleFontSize": 14},
     "view": {"stroke": "transparent"}
   }
 }

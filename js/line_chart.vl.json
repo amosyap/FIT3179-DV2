@@ -87,5 +87,7 @@
       }
     }
   ],
-  "config": {}
+  "config": {
+    "axis": {"labelFontSize": 12, "titleFontSize": 14}
+  }
 }

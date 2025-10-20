@@ -13,7 +13,7 @@
     "format": {"type": "csv"}
   },
   "width": 630,
-  "height": 550,
+  "height": 570,
   "layer": [
     {
       "selection": {
@@ -75,5 +75,8 @@
       }
     }
   ],
-  "config": {"view": {"stroke": "transparent"}}
+  "config": {
+    "view": {"stroke": "transparent"},
+    "axis": {"labelFontSize": 12, "titleFontSize": 14}
+  }
 }
