@@ -63,7 +63,8 @@
             "aggregate": "mean",
             "field": "number_of_complaints",
             "type": "quantitative",
-            "title": "Number of Complaints"
+            "title": "Number of Complaints",
+            "format": ","
           }
         ]
       }
